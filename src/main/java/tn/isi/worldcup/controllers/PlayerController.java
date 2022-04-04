@@ -7,7 +7,8 @@ import tn.isi.worldcup.services.PlayerService;
 
 import java.util.List;
 
-@RestController("/players")
+@RestController
+@RequestMapping("/players")
 @RequiredArgsConstructor
 public class PlayerController {
 

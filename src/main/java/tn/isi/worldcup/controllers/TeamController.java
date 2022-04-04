@@ -7,7 +7,8 @@ import tn.isi.worldcup.services.TeamService;
 
 import java.util.List;
 
-@RestController("/teams")
+@RestController
+@RequestMapping("/teams")
 @RequiredArgsConstructor
 public class TeamController {
 

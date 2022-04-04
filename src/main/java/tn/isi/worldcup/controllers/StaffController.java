@@ -7,7 +7,8 @@ import tn.isi.worldcup.services.StaffService;
 
 import java.util.List;
 
-@RestController("/staffs")
+@RestController
+@RequestMapping("/staffs")
 @RequiredArgsConstructor
 public class StaffController {
 
