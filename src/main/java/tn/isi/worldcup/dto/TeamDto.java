@@ -1,4 +1,4 @@
-package tn.isi.worldcup.model;
+package tn.isi.worldcup.dto;
 
 import lombok.*;
 import tn.isi.worldcup.entities.Staff;

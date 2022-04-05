@@ -1,8 +1,8 @@
-package tn.isi.worldcup.mappers;
+package tn.isi.worldcup.mapper;
 
 import org.mapstruct.Mapper;
 import tn.isi.worldcup.entities.Player;
-import tn.isi.worldcup.model.PlayerDto;
+import tn.isi.worldcup.dto.PlayerDto;
 
 @Mapper
 public interface PlayerMapper {

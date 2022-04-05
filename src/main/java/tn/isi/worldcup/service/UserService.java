@@ -1,6 +1,6 @@
-package tn.isi.worldcup.services;
+package tn.isi.worldcup.service;
 
-import tn.isi.worldcup.model.UserDto;
+import tn.isi.worldcup.dto.UserDto;
 
 import java.util.List;
 

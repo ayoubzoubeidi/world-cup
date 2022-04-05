@@ -1,8 +1,8 @@
-package tn.isi.worldcup.mappers;
+package tn.isi.worldcup.mapper;
 
 import org.mapstruct.Mapper;
 import tn.isi.worldcup.entities.Staff;
-import tn.isi.worldcup.model.StaffDto;
+import tn.isi.worldcup.dto.StaffDto;
 
 @Mapper
 public interface StaffMapper {

@@ -1,9 +1,9 @@
-package tn.isi.worldcup.controllers;
+package tn.isi.worldcup.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.isi.worldcup.model.StaffDto;
-import tn.isi.worldcup.services.StaffService;
+import tn.isi.worldcup.dto.StaffDto;
+import tn.isi.worldcup.service.StaffService;
 
 import java.util.List;
 

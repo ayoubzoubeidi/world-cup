@@ -1,4 +1,4 @@
-package tn.isi.worldcup.repositories;
+package tn.isi.worldcup.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import tn.isi.worldcup.entities.User;

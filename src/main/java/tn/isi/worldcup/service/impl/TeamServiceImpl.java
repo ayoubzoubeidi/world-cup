@@ -1,10 +1,11 @@
-package tn.isi.worldcup.services;
+package tn.isi.worldcup.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.isi.worldcup.mappers.TeamMapper;
-import tn.isi.worldcup.model.TeamDto;
-import tn.isi.worldcup.repositories.TeamRepository;
+import tn.isi.worldcup.mapper.TeamMapper;
+import tn.isi.worldcup.dto.TeamDto;
+import tn.isi.worldcup.repository.TeamRepository;
+import tn.isi.worldcup.service.TeamService;
 
 import java.util.List;
 import java.util.stream.Collectors;
