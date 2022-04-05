@@ -1,8 +1,22 @@
 package tn.isi.worldcup.model;
 
+import lombok.*;
 import tn.isi.worldcup.entities.Staff;
 
 import java.util.List;
 
-public record TeamDto(Long id, String name, String address, List<PlayerDto> players, List<Staff> staffs) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public final class TeamDto {
+
+    private Long id;
+    private String name;
+    private String address;
+    private List<PlayerDto> players;
+    private List<Staff> staffs;
+
+
 }

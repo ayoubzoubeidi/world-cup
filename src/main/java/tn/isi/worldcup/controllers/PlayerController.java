@@ -2,7 +2,7 @@ package tn.isi.worldcup.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.isi.worldcup.entities.Player;
+import tn.isi.worldcup.model.PlayerDto;
 import tn.isi.worldcup.services.PlayerService;
 
 import java.util.List;
@@ -15,18 +15,18 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @GetMapping
-    public List<Player> getAllPlayers() {
+    public List<PlayerDto> getAllPlayers() {
         return playerService.getAllPlayers();
     }
 
     @PostMapping
-    public void createPlayer(@RequestBody Player player) {
-        playerService.createPlayer(player);
+    public void createPlayer(@RequestBody PlayerDto playerDto) {
+        playerService.createPlayer(playerDto);
     }
 
     @PutMapping
-    public void updatePlayer(@RequestBody Player player) {
-        playerService.createPlayer(player);
+    public void updatePlayer(@RequestBody PlayerDto playerDto) {
+        playerService.updatePlayer(playerDto);
     }
 
     @DeleteMapping("/{id}")
@@ -35,7 +35,7 @@ public class PlayerController {
     }
 
     @GetMapping("/{id}")
-    public Player getPlayerById(@PathVariable Long id) {
+    public PlayerDto getPlayerById(@PathVariable Long id) {
         return playerService.getPlayerById(id);
     }
 }

@@ -1,9 +1,21 @@
 package tn.isi.worldcup.model;
 
-import lombok.Builder;
+import lombok.*;
 
 import java.util.Date;
 
-public record PlayerDto(Long id, String firstName, String lastName,
-                        String position, Date date, TeamDto teamDto) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public final class PlayerDto {
+
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String position;
+    private Date date;
+    private TeamDto teamDto;
+
 }

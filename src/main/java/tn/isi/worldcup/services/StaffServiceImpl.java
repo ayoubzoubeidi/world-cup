@@ -2,25 +2,28 @@ package tn.isi.worldcup.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.isi.worldcup.entities.Staff;
-import tn.isi.worldcup.entities.Staff;
+import tn.isi.worldcup.mappers.StaffMapper;
+import tn.isi.worldcup.model.StaffDto;
 import tn.isi.worldcup.repositories.StaffRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class StaffServiceImpl implements StaffService {
+
     private final StaffRepository staffRepository;
+    private final StaffMapper staffMapper;
 
     @Override
-    public void createStaff(Staff staff) {
-        staffRepository.save(staff);
+    public void createStaff(StaffDto staffDto) {
+        staffRepository.save(staffMapper.staffDtoToStaff(staffDto));
     }
 
     @Override
-    public void updateStaff(Staff staff) {
-        staffRepository.save(staff);
+    public void updateStaff(StaffDto staffDto) {
+        staffRepository.save(staffMapper.staffDtoToStaff(staffDto));
     }
 
     @Override
@@ -29,12 +32,15 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff getStaffById(Long id) {
-        return staffRepository.findById(id).orElseThrow(RuntimeException::new);
+    public StaffDto getStaffById(Long id) {
+        return staffMapper.staffToStaffDto(staffRepository.findById(id).orElseThrow(RuntimeException::new));
     }
 
     @Override
-    public List<Staff> getAllStaffs() {
-        return staffRepository.findAll();
+    public List<StaffDto> getAllStaffs() {
+        return staffRepository.findAll()
+                .stream()
+                .map(staffMapper::staffToStaffDto)
+                .collect(Collectors.toList());
     }
 }

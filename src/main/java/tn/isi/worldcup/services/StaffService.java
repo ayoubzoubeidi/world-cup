@@ -1,18 +1,18 @@
 package tn.isi.worldcup.services;
 
-import tn.isi.worldcup.entities.Staff;
+import tn.isi.worldcup.model.StaffDto;
 
 import java.util.List;
 
 public interface StaffService {
 
-    void createStaff(Staff staff);
+    void createStaff(StaffDto staffDto);
 
-    void updateStaff(Staff staff);
+    void updateStaff(StaffDto staffDto);
 
     void deleteStaffById(Long id);
 
-    Staff getStaffById(Long id);
+    StaffDto getStaffById(Long id);
 
-    List<Staff> getAllStaffs();
+    List<StaffDto> getAllStaffs();
 }

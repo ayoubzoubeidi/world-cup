@@ -2,7 +2,7 @@ package tn.isi.worldcup.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.isi.worldcup.entities.User;
+import tn.isi.worldcup.model.UserDto;
 import tn.isi.worldcup.services.UserService;
 
 import java.util.List;
@@ -15,18 +15,18 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping
-    public void createUser(@RequestBody User user) {
-        userService.createUser(user);
+    public void createUser(@RequestBody UserDto userDto) {
+        userService.createUser(userDto);
     }
 
     @PutMapping
-    public void updateUser(@RequestBody User user) {
-        userService.createUser(user);
+    public void updateUser(@RequestBody UserDto userDto) {
+        userService.updateUser(userDto);
     }
 
     @DeleteMapping("/{id}")
@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    public UserDto getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 }

@@ -1,19 +1,19 @@
 package tn.isi.worldcup.services;
 
-import tn.isi.worldcup.entities.User;
+import tn.isi.worldcup.model.UserDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    void createUser(User user);
+    void createUser(UserDto userDto);
 
-    void updateUser(User user);
+    void updateUser(UserDto userDto);
 
     void deleteUserById(Long id);
 
-    User getUserById(Long id);
+    UserDto getUserById(Long id);
 
-    List<User> getAllUsers();
+    List<UserDto> getAllUsers();
     
 }

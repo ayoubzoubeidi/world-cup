@@ -2,25 +2,28 @@ package tn.isi.worldcup.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.isi.worldcup.entities.Player;
+import tn.isi.worldcup.mappers.PlayerMapper;
+import tn.isi.worldcup.model.PlayerDto;
 import tn.isi.worldcup.repositories.PlayerRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PlayerServiceImpl implements PlayerService {
 
     private final PlayerRepository playerRepository;
+    private final PlayerMapper playerMapper;
 
     @Override
-    public void createPlayer(Player player) {
-        playerRepository.save(player);
+    public void createPlayer(PlayerDto playerDto) {
+        playerRepository.save(playerMapper.playerDtoToPlayer(playerDto));
     }
 
     @Override
-    public void updatePlayer(Player player) {
-        playerRepository.save(player);
+    public void updatePlayer(PlayerDto playerDto) {
+        playerRepository.save(playerMapper.playerDtoToPlayer(playerDto));
     }
 
     @Override
@@ -29,12 +32,14 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Player getPlayerById(Long id) {
-        return playerRepository.findById(id).orElseThrow(RuntimeException::new);
+    public PlayerDto getPlayerById(Long id) {
+        return playerMapper.playerToPlayerDto(playerRepository.findById(id).orElseThrow(RuntimeException::new));
     }
 
     @Override
-    public List<Player> getAllPlayers() {
-        return playerRepository.findAll();
+    public List<PlayerDto> getAllPlayers() {
+        return playerRepository.findAll().stream()
+                .map(playerMapper::playerToPlayerDto)
+                .collect(Collectors.toList());
     }
 }

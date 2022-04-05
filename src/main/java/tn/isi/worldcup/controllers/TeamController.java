@@ -2,7 +2,7 @@ package tn.isi.worldcup.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.isi.worldcup.entities.Team;
+import tn.isi.worldcup.model.TeamDto;
 import tn.isi.worldcup.services.TeamService;
 
 import java.util.List;
@@ -15,18 +15,18 @@ public class TeamController {
     private final TeamService teamService;
 
     @GetMapping
-    public List<Team> getAllTeams() {
+    public List<TeamDto> getAllTeams() {
         return teamService.getAllTeams();
     }
 
     @PostMapping
-    public void createTeam(@RequestBody Team team) {
-        teamService.createTeam(team);
+    public void createTeam(@RequestBody TeamDto teamDto) {
+        teamService.createTeam(teamDto);
     }
 
     @PutMapping
-    public void updateTeam(@RequestBody Team team) {
-        teamService.createTeam(team);
+    public void updateTeam(@RequestBody TeamDto teamDto) {
+        teamService.updateTeam(teamDto);
     }
 
     @DeleteMapping("/{id}")
@@ -35,7 +35,7 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public Team getTeamById(@PathVariable Long id) {
+    public TeamDto getTeamById(@PathVariable Long id) {
         return teamService.getTeamById(id);
     }
 }

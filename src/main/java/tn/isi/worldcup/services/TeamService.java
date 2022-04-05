@@ -1,19 +1,19 @@
 package tn.isi.worldcup.services;
 
-import tn.isi.worldcup.entities.Team;
+import tn.isi.worldcup.model.TeamDto;
 
 import java.util.List;
 
 public interface TeamService {
 
-    void createTeam(Team team);
+    void createTeam(TeamDto teamDto);
 
-    void updateTeam(Team team);
+    void updateTeam(TeamDto teamDto);
 
     void deleteTeamById(Long id);
 
-    Team getTeamById(Long id);
+    TeamDto getTeamById(Long id);
 
-    List<Team> getAllTeams();
+    List<TeamDto> getAllTeams();
     
 }

@@ -1,18 +1,18 @@
 package tn.isi.worldcup.services;
 
-import tn.isi.worldcup.entities.Player;
+import tn.isi.worldcup.model.PlayerDto;
 
 import java.util.List;
 
 public interface PlayerService {
 
-    void createPlayer(Player player);
+    void createPlayer(PlayerDto playerDto);
 
-    void updatePlayer(Player player);
+    void updatePlayer(PlayerDto playerDto);
 
     void deletePlayerById(Long id);
 
-    Player getPlayerById(Long id);
+    PlayerDto getPlayerById(Long id);
 
-    List<Player> getAllPlayers();
+    List<PlayerDto> getAllPlayers();
 }
