@@ -16,6 +16,6 @@ public final class StaffDto {
     private String lastName;
     private String job;
     private Date date;
-    private TeamDto teamDto;
+    private TeamDto team;
 
 }

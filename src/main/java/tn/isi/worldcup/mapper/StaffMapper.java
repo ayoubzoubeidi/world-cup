@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import tn.isi.worldcup.entities.Staff;
 import tn.isi.worldcup.dto.StaffDto;
 
-@Mapper
+@Mapper(uses = {TeamMapper.class})
 public interface StaffMapper {
 
     StaffDto staffToStaffDto(Staff staff);

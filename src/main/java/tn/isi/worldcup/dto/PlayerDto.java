@@ -16,6 +16,6 @@ public final class PlayerDto {
     private String lastName;
     private String position;
     private Date date;
-    private TeamDto teamDto;
+    private TeamDto team;
 
 }

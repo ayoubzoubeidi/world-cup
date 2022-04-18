@@ -2,6 +2,9 @@ package tn.isi.worldcup.dto;
 
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,5 +16,5 @@ public final class UserDto {
     private String username;
     private String email;
     private String password;
-    private String role;
+    private List<RoleDto> roles = new ArrayList<>();
 }

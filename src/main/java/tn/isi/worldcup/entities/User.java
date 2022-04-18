@@ -1,20 +1,18 @@
 package tn.isi.worldcup.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class User {
 
@@ -28,6 +26,35 @@ public class User {
     private String email;
     private String password;
 
-    private Role role;
+    @Singular
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")}
+    )
+    private Set<Role> roles = new HashSet<>();
+
+    @Transient
+    private Set<Authority> authorities = new HashSet<>();
+
+    public Set<Authority> getAuthorities() {
+        return roles
+                .stream()
+                .map(Role::getAuthorities)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+    }
+
+    @Builder.Default
+    private boolean accountNonExpired = true;
+
+    @Builder.Default
+    private boolean accountNonLocked = true;
+
+    @Builder.Default
+    private boolean credentialsNonExpired = true;
+
+    @Builder.Default
+    private boolean enabled = true;
 
 }
