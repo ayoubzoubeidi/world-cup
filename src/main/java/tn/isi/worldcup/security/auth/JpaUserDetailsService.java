@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tn.isi.worldcup.entities.ApplicationUser;
 import tn.isi.worldcup.entities.Authority;
-import tn.isi.worldcup.entities.User;
 import tn.isi.worldcup.repository.UserRepository;
 
 import java.util.Collection;
@@ -25,18 +25,18 @@ public class JpaUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> {
-            throw new UsernameNotFoundException("Email " + email + "Not Found");
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        ApplicationUser applicationUser = userRepository.findByUsername(username).orElseThrow(() -> {
+            throw new UsernameNotFoundException("Username " + username + "Not Found");
         });
 
-        return convertUserToSpringSecurityUser(user);
+        return convertUserToSpringSecurityUser(applicationUser);
     }
 
-    private UserDetails convertUserToSpringSecurityUser(User user) {
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(),
-                convertUserAuthoritiesToSpringUserAuthority(user.getAuthorities()));
+    private UserDetails convertUserToSpringSecurityUser(ApplicationUser applicationUser) {
+        return new org.springframework.security.core.userdetails.User(applicationUser.getUsername(), applicationUser.getPassword(),
+                applicationUser.isEnabled(), applicationUser.isAccountNonExpired(), applicationUser.isCredentialsNonExpired(), applicationUser.isAccountNonLocked(),
+                convertUserAuthoritiesToSpringUserAuthority(applicationUser.getAuthorities()));
     }
 
     private Collection<? extends GrantedAuthority> convertUserAuthoritiesToSpringUserAuthority(Set<Authority> authorities) {

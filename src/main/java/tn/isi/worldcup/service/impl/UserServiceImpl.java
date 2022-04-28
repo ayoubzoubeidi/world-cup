@@ -1,7 +1,9 @@
 package tn.isi.worldcup.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import tn.isi.worldcup.entities.ApplicationUser;
 import tn.isi.worldcup.mapper.UserMapper;
 import tn.isi.worldcup.dto.UserDto;
 import tn.isi.worldcup.repository.UserRepository;
@@ -15,11 +17,14 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
     @Override
     public void createUser(UserDto userDto) {
-        userRepository.save(userMapper.userDtoToUser(userDto));
+        ApplicationUser user = userMapper.userDtoToUser(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        userRepository.save(user);
     }
 
     @Override

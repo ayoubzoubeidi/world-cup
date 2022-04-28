@@ -19,7 +19,9 @@ import tn.isi.worldcup.security.auth.AuthenticationFilter;
 import tn.isi.worldcup.security.auth.JWTRequestFilter;
 import tn.isi.worldcup.security.jwt.JWTService;
 
-@Configuration @EnableWebSecurity @RequiredArgsConstructor
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
@@ -39,9 +41,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().disable();
         http.authorizeRequests(authorize ->
                 authorize
-                        .antMatchers("/",
-                                "/refresh",
-                                "/h2-console**", "/h2-console**/**", "/h2-console**/**/**").permitAll());
+                        .antMatchers("/", "/login*",
+                                "/refresh", "/register").permitAll());
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilter(new AuthenticationFilter(authenticationManagerBean(), jwtService));
@@ -59,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 
     @Bean
     AuthenticationProvider authenticationProvider() {
